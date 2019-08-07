@@ -1,0 +1,9 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <movable-area style="height: 300px; width: 375px; background: red;">
+            <image mode="scaleToFill" style="height: 300px; width: 375px;" src="http://storage.360buyimg.com/mtd/home/32443566_635798770100444_2113947400891531264_n1533825816008.jpg"></image>
+            <movable-view bindchange="handleChange" style="height: 20px; width: 80px; background: rgba(0,0,0, 0.5); font-size: 12px; color: #fff" direction="all">这是一个测试</movable-view>
+        </movable-area>
+        <button bindtap="handleClick">确认</button>
+    </view>
+</block>
