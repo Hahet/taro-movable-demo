@@ -53,8 +53,8 @@ class Index extends Component {
           {label && (
             <MovableView
               onChange={this.handleChange}
-              x={x}
-              y={y}
+              x={50}
+              y={50}
               style="height: 20px; width: 80px; background: rgba(0,0,0, 0.5); font-size: 12px; color: #fff"
               direction="all"
             >
