@@ -38,23 +38,36 @@ var _App = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.vertex = {
-      x: 0,
-      y: 0
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _App.__proto__ || Object.getPrototypeOf(_App)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__5", "labels", "label", "images"], _this.state = {
+      label: "",
+      images: [],
+      labels: ["hello world", "flex", "测试用例", "gogogo"]
     }, _this.handleClick = function () {
-      console.log("vertex", _this.vertex);
-    }, _this.handleChange = function (e) {
-      console.log("e", e);
-      // 移动 标签的时候会触发， 可以取到 MovableView 相对于 MovableArea的位置
-      var _e$detail = e.detail,
-          x = _e$detail.x,
-          y = _e$detail.y;
-
-      _this.vertex = {
-        x: x,
-        y: y
+      var params = {
+        // 只允许选择一张图片
+        count: 1
       };
-    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+      //
+      // https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseImage.html
+      _index2.default.chooseImage(params).then(function (data) {
+        console.log("data", data);
+        // tempFilePaths 是个数组
+
+        var tempFilePaths = data.tempFilePaths;
+        // 将 图片url数组保存到 state的 images里
+        // 这个路径只是一个 其实你手机上的位置， 依赖于你的手机， 别人没法看）。 想要真正保存图片需要
+        // 上传 到自己服务器 生成一个真正的url：使用uploadFile 上传 https://nervjs.github.io/taro/docs/apis/network/fileTransfer/uploadFile.html#docsNav
+
+        _this.setState({
+          images: tempFilePaths
+        });
+      });
+    }, _this.handleLabelClick = function (label) {
+      console.log("label:", label);
+      _this.setState({
+        label: label
+      });
+    }, _this.customComponents = ["MovableBox"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(_App, [{
@@ -72,13 +85,30 @@ var _App = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+      var $compid__5 = (0, _index.genCompid)(__prefix + "$compid__5");
+
+      var _state = this.__state,
+          images = _state.images,
+          labels = _state.labels,
+          label = _state.label;
+      // 取出图片url
+
+      var image = images[0];
+
+      _index.propsManager.set({
+        "src": image,
+        "label": label,
+        "style": "width: 375px;height: 250px;background: #aaa;"
+      }, $compid__5);
+      Object.assign(this.__state, {
+        $compid__5: $compid__5
+      });
       return this.__state;
     }
   }]);
 
   return _App;
-}(_index.Component), _class.$$events = ["handleChange", "handleClick"], _class.$$componentPath = "pages/index/index", _temp2);
+}(_index.Component), _class.$$events = ["handleClick", "handleLabelClick"], _class.$$componentPath = "pages/index/index", _temp2);
 
 exports.default = _App;
 

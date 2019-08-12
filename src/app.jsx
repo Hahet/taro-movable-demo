@@ -11,7 +11,7 @@ import "./app.scss";
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index"],
+    pages: ["pages/index/index", "pages/labels/index", "pages/addLabel/index"],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
