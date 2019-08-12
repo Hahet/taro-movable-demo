@@ -1,9 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view>
-        <button bindtap="handleClick">选择图片</button>
-        <view class="labels">
-            <view wx:key="item" bindtap="handleLabelClick" class="label" wx:for="{{labels}}" wx:for-item="item" wx:for-index="_anonIdx2" data-e-tap-so="this" data-e-tap-a-a="{{item}}">{{item}}</view>
-        </view>
-        <movable-box compid="{{$compid__5}}"></movable-box>
-    </view>
-</block>
